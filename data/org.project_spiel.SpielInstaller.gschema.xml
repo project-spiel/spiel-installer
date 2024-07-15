@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="spielinstaller">
+	<schema id="org.project_spiel.SpielInstaller" path="/org/project_spiel/SpielInstaller/">
+	</schema>
+</schemalist>

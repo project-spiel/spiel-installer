@@ -1,0 +1,8 @@
+data/org.project_spiel.SpielInstaller.desktop.in
+data/org.project_spiel.SpielInstaller.metainfo.xml.in
+data/org.project_spiel.SpielInstaller.gschema.xml
+src/main.py
+src/window.py
+src/voices_store.py
+src/window.ui
+src/voice_row.ui

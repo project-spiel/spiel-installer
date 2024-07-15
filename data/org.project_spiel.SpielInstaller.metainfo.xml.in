@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>org.project_spiel.SpielInstaller.desktop</id>
+
+	<name>Spiel Installer</name>
+  <summary>A utility for installing Spiel speech synthesis voices</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  
+  <description>
+	  <p>A utility for installing Spiel speech synthesis voices.</p>
+  </description>
+    
+  <categories>
+    <category>AudioVideo</category>
+    <category>Player</category>
+  </categories>
+  
+  <launchable type="desktop-id">org.project_spiel.SpielInstaller.desktop</launchable>
+
+</component>

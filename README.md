@@ -10,7 +10,7 @@ It installs voices in Flatpak format, and the speech provider it depends on.
 
 ## Installation
 
-[Install this Flatpak](http://project-spiel.org/spiel-it/spiel-installer.flatpakref)
+[Install this Flatpak](https://project-spiel.org/flatpaks/spiel-installer.flatpakref)
 
 ## Build instructions
 

@@ -58,7 +58,7 @@
                 <child>
                   <object class="GtkSearchEntry" id="searchentry">
                     <property name="search-delay">100</property>
-                    <property name="placeholder-text" translatable="true">Search fruits</property>
+                    <property name="placeholder-text" translatable="true">Search voices</property>
                     <property name="width-request">400</property>
                     <signal name="search-changed" handler="_search_changed" swapped="no" />
                   </object>

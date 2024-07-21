@@ -37,7 +37,7 @@ class VoiceshopWindow(Adw.ApplicationWindow):
     voices_list = Gtk.Template.Child()
     providers_dropdown = Gtk.Template.Child()
     languages_dropdown = Gtk.Template.Child()
-    scrolled_window = Gtk.Template.Child()
+    voices_page = Gtk.Template.Child()
     stack = Gtk.Template.Child()
     searchbar = Gtk.Template.Child()
     search_button = Gtk.Template.Child()
@@ -78,7 +78,7 @@ class VoiceshopWindow(Adw.ApplicationWindow):
         pass
 
     def _on_vstore_populated(self, vstore):
-        self.stack.set_visible_child(self.scrolled_window)
+        self.stack.set_visible_child(self.voices_page)
         self.providers_dropdown.set_sensitive(True)
         self.languages_dropdown.set_sensitive(True)
 

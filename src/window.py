@@ -42,6 +42,9 @@ class VoiceshopWindow(Adw.ApplicationWindow):
     stack = Gtk.Template.Child()
     searchbar = Gtk.Template.Child()
     search_button = Gtk.Template.Child()
+    no_results_page = Gtk.Template.Child()
+    no_voices_page = Gtk.Template.Child()
+    instructions_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -71,6 +74,10 @@ class VoiceshopWindow(Adw.ApplicationWindow):
         self.vstore.connect("populated", self._on_vstore_populated)
         self.vstore.populate()
 
+        self.instructions_button.connect(
+            "clicked", self._on_instructions_button_clicked
+        )
+
     def _on_provider_changed(self, dropdown, params):
         self.vstore.set_provider_filter(self.providers_dropdown.get_selected_item())
 
@@ -79,8 +86,24 @@ class VoiceshopWindow(Adw.ApplicationWindow):
         pass
 
     def _on_vstore_populated(self, vstore):
-        self.stack.set_visible_child(self.voices_page)
-        self.voice_filters.set_sensitive(True)
+        # If the internal model has no voices,
+        # use a status page.
+        if vstore.get_model().props.n_items > 0:
+            self.stack.set_visible_child(self.voices_page)
+            self.vstore.connect("notify::n-items", self._on_filter_items_changed)
+            self.voice_filters.set_sensitive(True)
+        else:
+            self.stack.set_visible_child(self.no_voices_page)
+
+    def _on_filter_items_changed(self, vstore, _pspec):
+        if vstore.props.n_items == 0 and vstore.get_model().props.n_items > 0:
+            self.stack.set_visible_child(self.no_results_page)
+        else:
+            self.stack.set_visible_child(self.voices_page)
+
+    def _on_instructions_button_clicked(self, button):
+        launcher = Gtk.UriLauncher.new("https://project-spiel.org/install.html")
+        launcher.launch(self, None, None)
 
     def _create_voice_row(self, voice):
         return VoiceRow(voice)

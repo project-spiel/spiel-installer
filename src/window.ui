@@ -89,6 +89,30 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwStatusPage" id="no_results_page">
+                <property name="icon-name">system-search-symbolic</property>
+                <property name="title" translatable="yes">No Voices Found</property>
+                <property name="description" translatable="yes">No available voices match your search</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwStatusPage" id="no_voices_page">
+                <property name="icon-name">org.project_spiel.SpielInstaller-symbolic</property>
+                <property name="title" translatable="yes">No Voices Available</property>
+                <property name="description" translatable="yes">Add the Spiel flatpak repository to download voices</property>
+                <property name="child">
+                  <object class="GtkButton" id="instructions_button">
+                    <property name="label" translatable="yes">Installation Instructions</property>
+                    <property name="can-shrink">True</property>
+                    <property name="halign">center</property>
+                    <style>
+                      <class name="pill"/>
+                    </style>
+                  </object>
+                </property>
+              </object>
+            </child>
           </object>
         </property>
       </object>

@@ -86,10 +86,6 @@ class VoiceshopWindow(Adw.ApplicationWindow):
         return VoiceRow(voice)
 
     @Gtk.Template.Callback()
-    def _search_toggled(self, button):
-        self.searchbar.set_search_mode(button.get_active())
-
-    @Gtk.Template.Callback()
     def _search_changed(self, entry):
         self.vstore.set_text_filter(entry.get_text())
 

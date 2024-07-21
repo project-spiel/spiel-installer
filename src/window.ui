@@ -13,17 +13,18 @@
               <object class="GtkToggleButton" id="search_button">
                 <property name="icon-name">edit-find-symbolic</property>
                 <property name="active" bind-source="searchbar" bind-property="search-mode-enabled" bind-flags="bidirectional|sync-create"/>
+                <property name="sensitive" bind-source="voice_filters" bind-property="sensitive" bind-flags="sync-create"/>
               </object>
             </child>
             <child type="title">
-              <object class="GtkBox">
+              <object class="GtkBox" id="voice_filters">
                 <property name="orientation">0</property>
                 <property name="spacing">6</property>
                 <property name="homogeneous">True</property>
+                <property name="sensitive">False</property>
                 <child>
                   <object class="GtkDropDown" id="languages_dropdown">
                     <property name="enable-search">True</property>
-                    <property name="sensitive">False</property>
                     <style>
                       <class name="flat-dropdown" />
                     </style>
@@ -31,7 +32,6 @@
                 </child>
                 <child>
                   <object class="GtkDropDown" id="providers_dropdown">
-                    <property name="sensitive">False</property>
                     <style>
                       <class name="flat-dropdown" />
                     </style>
@@ -51,6 +51,7 @@
         </child>
         <child type="top">
           <object class="GtkSearchBar" id="searchbar">
+            <property name="sensitive" bind-source="search_button" bind-property="sensitive" bind-flags="sync-create"/>
             <property name="key-capture-widget">VoiceshopWindow</property>
             <child>
               <object class="GtkSearchEntry" id="searchentry">

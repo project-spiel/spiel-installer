@@ -35,6 +35,7 @@ class VoiceshopWindow(Adw.ApplicationWindow):
     __gtype_name__ = "VoiceshopWindow"
 
     voices_list = Gtk.Template.Child()
+    voice_filters = Gtk.Template.Child()
     providers_dropdown = Gtk.Template.Child()
     languages_dropdown = Gtk.Template.Child()
     voices_page = Gtk.Template.Child()
@@ -79,8 +80,7 @@ class VoiceshopWindow(Adw.ApplicationWindow):
 
     def _on_vstore_populated(self, vstore):
         self.stack.set_visible_child(self.voices_page)
-        self.providers_dropdown.set_sensitive(True)
-        self.languages_dropdown.set_sensitive(True)
+        self.voice_filters.set_sensitive(True)
 
     def _create_voice_row(self, voice):
         return VoiceRow(voice)

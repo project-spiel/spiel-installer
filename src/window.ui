@@ -12,18 +12,20 @@
             <child>
               <object class="GtkToggleButton" id="search_button">
                 <property name="icon-name">edit-find-symbolic</property>
-                <signal name="toggled" handler="_search_toggled" swapped="no" />
+                <property name="active" bind-source="searchbar" bind-property="search-mode-enabled" bind-flags="bidirectional|sync-create"/>
+                <property name="sensitive" bind-source="voice_filters" bind-property="sensitive" bind-flags="sync-create"/>
+                <property name="tooltip-text" translatable="yes">Search</property>
               </object>
             </child>
             <child type="title">
-              <object class="GtkBox">
+              <object class="GtkBox" id="voice_filters">
                 <property name="orientation">0</property>
                 <property name="spacing">6</property>
                 <property name="homogeneous">True</property>
+                <property name="sensitive">False</property>
                 <child>
                   <object class="GtkDropDown" id="languages_dropdown">
                     <property name="enable-search">True</property>
-                    <property name="sensitive">False</property>
                     <style>
                       <class name="flat-dropdown" />
                     </style>
@@ -31,7 +33,6 @@
                 </child>
                 <child>
                   <object class="GtkDropDown" id="providers_dropdown">
-                    <property name="sensitive">False</property>
                     <style>
                       <class name="flat-dropdown" />
                     </style>
@@ -49,59 +50,68 @@
             </child>
           </object>
         </child>
-        <property name="content">
-          <object class="GtkBox" id="container">
-            <property name="orientation">1</property>
+        <child type="top">
+          <object class="GtkSearchBar" id="searchbar">
+            <property name="sensitive" bind-source="search_button" bind-property="sensitive" bind-flags="sync-create"/>
+            <property name="key-capture-widget">VoiceshopWindow</property>
             <child>
-              <object class="GtkSearchBar" id="searchbar">
-                <property name="key-capture-widget">container</property>
+              <object class="GtkSearchEntry" id="searchentry">
+                <property name="search-delay">100</property>
+                <property name="placeholder-text" translatable="true">Search voices</property>
+                <property name="width-request">400</property>
+                <signal name="search-changed" handler="_search_changed" swapped="no" />
+              </object>
+            </child>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkStack" id="stack">
+            <child>
+              <object class="GtkSpinner">
+                <property name="vexpand">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="spinning">true</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesPage" id="voices_page">
                 <child>
-                  <object class="GtkSearchEntry" id="searchentry">
-                    <property name="search-delay">100</property>
-                    <property name="placeholder-text" translatable="true">Search voices</property>
-                    <property name="width-request">400</property>
-                    <signal name="search-changed" handler="_search_changed" swapped="no" />
+                  <object class="AdwPreferencesGroup">
+                    <child>
+                      <object class="GtkListBox" id="voices_list">
+                        <property name="selection-mode">0</property>
+                        <style>
+                          <class name="boxed-list" />
+                        </style>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="AdwClamp">
-                <property name="maximum-size">500</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="margin-top">12</property>
-                    <property name="margin-bottom">12</property>
-                    <property name="spacing">6</property>
-                    <property name="orientation">1</property>
-                    <child>
-                      <object class="GtkStack" id="stack">
-                        <child>
-                          <object class="GtkSpinner" id="spinner">
-                            <property name="halign">3</property>
-                            <property name="valign">3</property>
-                            <property name="spinning">true</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScrolledWindow" id="scrolled_window">
-                            <property name="vexpand">True</property>
-                            <child>
-                              <object class="GtkListBox" id="voices_list">
-                                <property name="selection-mode">0</property>
-                                <style>
-                                  <class name="boxed-list" />
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-
-                        </child>
-                      </object>
-
-                    </child>
+              <object class="AdwStatusPage" id="no_results_page">
+                <property name="icon-name">system-search-symbolic</property>
+                <property name="title" translatable="yes">No Voices Found</property>
+                <property name="description" translatable="yes">No available voices match your search</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwStatusPage" id="no_voices_page">
+                <property name="icon-name">org.project_spiel.SpielInstaller-symbolic</property>
+                <property name="title" translatable="yes">No Voices Available</property>
+                <property name="description" translatable="yes">Add the Spiel flatpak repository to download voices</property>
+                <property name="child">
+                  <object class="GtkButton" id="instructions_button">
+                    <property name="label" translatable="yes">Installation Instructions</property>
+                    <property name="can-shrink">True</property>
+                    <property name="halign">center</property>
+                    <style>
+                      <class name="pill"/>
+                    </style>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
           </object>

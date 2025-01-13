@@ -245,7 +245,10 @@ class Voice(GObject.Object):
 
     @property
     def provider_name(self):
-        return self._provider_component.get_name()
+        return (
+            self._provider_component.get_custom_value("Spiel::provider_name")
+            or self._provider_component.get_name()
+        )
 
     def update_status(self, status):
         old_status = self._status

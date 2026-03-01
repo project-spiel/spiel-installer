@@ -1,0 +1,74 @@
+# Swedish translation for spiel-installer.
+# Copyright (C) 2026 the spiel-installer authors
+# This file is distributed under the same license as the spiel-installer package.
+# Daniel Nylander <daniel@danielnylander.se>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: spiel-installer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-01 00:00+0000\n"
+"PO-Revision-Date: 2026-03-01 07:30+0100\n"
+"Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/voices_store.py
+msgid "All Providers"
+msgstr "Alla leverantörer"
+
+#: src/voices_store.py
+msgid "All Languages"
+msgstr "Alla språk"
+
+#: src/voice_row.ui
+msgid "Install"
+msgstr "Installera"
+
+#: src/voice_row.ui
+msgid "Uninstall"
+msgstr "Avinstallera"
+
+#: src/window.ui
+msgid "Search"
+msgstr "Sök"
+
+#: src/window.ui
+msgid "Menu"
+msgstr "Meny"
+
+#: src/window.ui
+msgid "Search voices"
+msgstr "Sök röster"
+
+#: src/window.ui
+msgid "No Voices Found"
+msgstr "Inga röster hittades"
+
+#: src/window.ui
+msgid "No available voices match your search"
+msgstr "Inga tillgängliga röster matchar din sökning"
+
+#: src/window.ui
+msgid "No Voices Available"
+msgstr "Inga röster tillgängliga"
+
+#: src/window.ui
+msgid "Add the Spiel flatpak repository to download voices"
+msgstr "Lägg till Spiels flatpak-förråd för att hämta röster"
+
+#: src/window.ui
+msgid "Installation Instructions"
+msgstr "Installationsanvisningar"
+
+#: src/window.ui
+msgid "_Keyboard Shortcuts"
+msgstr "_Tangentbordsgenvägar"
+
+#: src/window.ui
+msgid "_About Spiel Installer"
+msgstr "_Om Spiel Installer"

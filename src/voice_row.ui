@@ -14,6 +14,16 @@
       </object>
     </child>
     <child type="suffix">
+      <object class="GtkLabel" id="size_label">
+        <property name="label"></property>
+        <property name="visible">false</property>
+        <style>
+          <class name="dim-label" />
+          <class name="caption" />
+        </style>
+      </object>
+    </child>
+    <child type="suffix">
       <object class="GtkStack" id="stack">
         <property name="halign">3</property>
         <property name="valign">3</property>

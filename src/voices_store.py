@@ -176,14 +176,16 @@ class VoiceStatus:
 
 
 class Voice(GObject.Object):
+    _download_size = 0
     def __init__(
-        self, installation, remote, voice_component, provider_component, status
+        self, installation, remote, voice_component, provider_component, status, download_size=0
     ):
         self._installation = installation
         self._remote = remote
         self._voice_component = voice_component
         self._provider_component = provider_component
         self._status = status
+        self._download_size = download_size
         self._langs = [
             Language.get(standardize_tag(l))
             for l in self.voice_component.get_languages()
@@ -209,6 +211,10 @@ class Voice(GObject.Object):
     @GObject.Property(type=int)
     def status(self):
         return self._status
+
+    @GObject.Property(type=int)
+    def download_size(self):
+        return self._download_size
 
     @GObject.Property(type=GObject.TYPE_STRV)
     def language_and_region_names(self):
@@ -366,6 +372,14 @@ class VoicesStore(Gtk.FilterListModel):
                 md = AppStream.Metadata.new()
                 md.set_format_style(AppStream.FormatStyle.CATALOG)
                 md.parse_file(app_stream_file, 1)
+                # Build a map of ref name -> download size from remote refs
+                ref_sizes = {}
+                try:
+                    remote_refs = installation.list_remote_refs_sync(remote.get_name(), cancellable)
+                    for rref in remote_refs:
+                        ref_sizes[rref.get_name()] = rref.get_download_size()
+                except Exception:
+                    pass
                 components = dict(
                     [[c.get_id(), c] for c in md.get_components().as_array()]
                 )
@@ -381,7 +395,7 @@ class VoicesStore(Gtk.FilterListModel):
                             else VoiceStatus.UNINSTALLED
                         )
                         voices.append(
-                            Voice(installation, remote, component, provider, status)
+                            Voice(installation, remote, component, provider, status, download_size=ref_sizes.get(component.get_id(), 0))
                         )
         task.return_value(voices)
 
